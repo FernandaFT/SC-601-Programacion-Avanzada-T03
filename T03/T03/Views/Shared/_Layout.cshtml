@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Grupo 01 T03</title>
+
+    <link href="~/Template/css/style.css" rel="stylesheet" />
+
+    <link href="~/Template/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/Template/css/themify-icons.css" rel="stylesheet" />
+    <link href="~/Template/css/vendor.bundle.base.css" rel="stylesheet" />
+    <link href="~/Template/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Template/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Template/image/favicon.png" />
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+</head>
+<body>
+    @RenderBody()
+    <div class="container-scroller">
+
+        <div class="container-fluid page-body-wrapper">
+
+            <div class="main-panel-body">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3 class="page-title">
+                            <span class="page-title-icon bg-gradient-danger text-white me-2">
+                                <i class="mdi mdi-shopping"></i>
+                            </span> Bienvenidos al Control de Abonos
+                        </h3>
+                    </div>
+                    <div class="row row-altura d-flex justify-content-center gap-3">
+                        <div class="col-md-4 stretch-card grid-margin">
+                            <div class="card bg-gradient-primary card-img-holder text-white">
+                                <div class="card-body">
+                                    <img src="~/Template/image/circle.svg" class="card-img-absolute" alt="circle-image" />
+                                    <h4 class="font-weight-normal mb-3">
+                                        Consulta de Productos <i class="mdi mdi-shopping-search mdi-24px float-end"></i>
+                                    </h4>
+                                    <p class="mb-5">
+                                        Visualiza todos los productos del sistema, ordenados por estado (pendientes primero).
+                                    </p>
+                                    <a href="@Url.Action("Consultar", "Home")"
+                                       class="btn btn-gradient-danger btn-rounded btn-fw">
+                                        Ver Productos
+                                        <i class="mdi mdi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 stretch-card grid-margin">
+                            <div class="card bg-gradient-success card-img-holder text-white">
+                                <div class="card-body">
+                                    <img src="~/Template/image/circle.svg" class="card-img-absolute" alt="circle-image" />
+                                    <h4 class="font-weight-normal mb-3">
+                                        Registro de Abonos <i class="mdi mdi-contactless-payment mdi-24px float-end"></i>
+                                    </h4>
+                                    <p class="mb-5">
+                                        Realiza pagos parciales sobre compras pendientes, 
+                                        actualizando automáticamente el saldo y estado de la compra.
+                                    </p>
+                                    <a href="@Url.Action("Registro", "Home")"
+                                       class="btn btn-gradient-danger btn-rounded btn-fw">
+                                        Registrar Abono
+                                        <i class="mdi mdi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©2026 Progamación Avanzada | Todos los derechos reservados.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                           Grupo 01:  Aaron Azofeifa | Laura Brenes | Fernanda Fajardo | Jean Paul Segura | Ericka Torres 
+                        </span>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Template/js/vendor.bundle.base.js"></script>
+    <script src="~/Template/js/chart.umd.js"></script>
+    <script src="~/Template/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Template/js/off-canvas.js"></script>
+    <script src="~/Template/js/misc.js"></script>
+    <script src="~/Template/js/settings.js"></script>
+    <script src="~/Template/js/todolist.js"></script>
+    <script src="~/Template/js/jquery.cookie.js"></script>
+</body>
+</html>
