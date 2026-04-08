@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -121,32 +130,63 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="EntityFramework\Abonos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Principal.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EntityFramework\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityFramework\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="template\css\bootstrap-datepicker.min.css" />
-    <Content Include="template\css\font-awesome.min.css" />
-    <Content Include="template\css\materialdesignicons.min.css" />
-    <Content Include="template\css\style.css" />
-    <Content Include="template\css\themify-icons.css" />
-    <Content Include="template\css\vendor.bundle.base.css" />
-    <Content Include="template\image\circle.svg" />
-    <Content Include="template\image\favicon.png" />
-    <Content Include="template\image\logo.svg" />
-    <Content Include="template\js\bootstrap-datepicker.min.js" />
-    <Content Include="template\js\chart.umd.js" />
-    <Content Include="template\js\dashboard.js" />
-    <Content Include="template\js\jquery.cookie.js" />
-    <Content Include="template\js\misc.js" />
-    <Content Include="template\js\off-canvas.js" />
-    <Content Include="template\js\settings.js" />
-    <Content Include="template\js\todolist.js" />
-    <Content Include="template\js\vendor.bundle.base.js" />
+    <Content Include="Template\css\bootstrap-datepicker.min.css" />
+    <Content Include="Template\css\font-awesome.min.css" />
+    <Content Include="Template\css\materialdesignicons.min.css" />
+    <Content Include="Template\css\style.css" />
+    <Content Include="Template\css\themify-icons.css" />
+    <Content Include="Template\css\vendor.bundle.base.css" />
+    <Content Include="Template\image\circle.svg" />
+    <Content Include="Template\image\favicon.png" />
+    <Content Include="Template\image\logo.svg" />
+    <Content Include="Template\js\bootstrap-datepicker.min.js" />
+    <Content Include="Template\js\chart.umd.js" />
+    <Content Include="Template\js\dashboard.js" />
+    <Content Include="Template\js\jquery.cookie.js" />
+    <Content Include="Template\js\misc.js" />
+    <Content Include="Template\js\off-canvas.js" />
+    <Content Include="Template\js\settings.js" />
+    <Content Include="Template\js\todolist.js" />
+    <Content Include="Template\js\vendor.bundle.base.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -162,35 +202,44 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="EntityFramework\" />
     <Folder Include="Models\" />
-    <Folder Include="template\js\funciones\" />
+    <Folder Include="Template\js\funciones\" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="EntityFramework\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EntityFramework\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
-    <Content Include="template\fonts\materialdesignicons-webfont.eot" />
-    <Content Include="template\fonts\materialdesignicons-webfont.ttf" />
-    <Content Include="template\fonts\materialdesignicons-webfont.woff" />
-    <Content Include="template\fonts\materialdesignicons-webfont.woff2" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Bold.eot" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Bold.ttf" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Bold.woff" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Bold.woff2" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Light.eot" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Light.ttf" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Light.woff" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Light.woff2" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Medium.eot" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Medium.ttf" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Medium.woff" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Medium.woff2" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Regular.eot" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Regular.ttf" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Regular.woff" />
-    <Content Include="template\fonts\Ubuntu\Ubuntu-Regular.woff2" />
+    <Content Include="Template\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="Template\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="Template\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="Template\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Bold.eot" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Bold.ttf" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Bold.woff" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Bold.woff2" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Light.eot" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Light.ttf" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Light.woff" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Light.woff2" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Medium.eot" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Medium.ttf" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Medium.woff" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Medium.woff2" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Regular.eot" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Regular.ttf" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Regular.woff" />
+    <Content Include="Template\fonts\Ubuntu\Ubuntu-Regular.woff2" />
     <Content Include="Views\Shared\_LayoutExterno.cshtml" />
     <Content Include="Views\Home\Consultar.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -231,5 +280,8 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
 </Project>
