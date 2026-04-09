@@ -1,0 +1,55 @@
+﻿@model List<T03.Models.ConsultaModel>
+
+@{
+    ViewBag.Title = "Consultar";
+}
+
+<div class="container-fluid mt-4">
+
+    <h2 class="text-center mb-4">Consultar</h2>
+
+    <div style="display:flex; justify-content:center;">
+
+        <div style="width:60%;">
+
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Código Compra</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Saldo</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        foreach (var c in Model)
+                        {
+                            <tr>
+                                <td>@c.IdCompra</td>
+                                <td>@c.Descripcion</td>
+                                <td>@c.Precio</td>
+                                <td>@c.Saldo</td>
+                                <td>@c.Estado</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" style="text-align:center;">
+                                No hay registros
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
