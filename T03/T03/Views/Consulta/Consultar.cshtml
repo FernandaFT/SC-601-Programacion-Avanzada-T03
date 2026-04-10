@@ -1,0 +1,77 @@
+﻿@model List<T03.Models.ConsultaModel>
+
+@{
+    ViewBag.Title = "Consultar";
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+}
+
+<div class="container mt-4">
+
+    
+    <div class="mb-3">
+        <a href="@Url.Action("Index","Home")" class="btn btn-danger">
+            ← Ir al Inicio
+        </a>
+    </div>
+
+    
+    <div class="card shadow">
+
+       
+        <div class="card-header text-center text-white"
+             style="background: linear-gradient(90deg, #4facfe, #00f2fe);">
+            <h4>Consulta de Compras</h4>
+        </div>
+
+        
+        <div class="card-body">
+
+            <table class="table table-hover table-bordered text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Código Compra</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Saldo</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        foreach (var c in Model)
+                        {
+                            <tr>
+                                <td>@c.IdCompra</td>
+                                <td>@c.Descripcion</td>
+                                <td>₡@c.Precio.ToString("N2")</td>
+                                <td>₡@c.Saldo.ToString("N2")</td>
+
+                                <td>
+                                    @if (c.Estado == "Pendiente")
+                                    {
+                                        <span class="badge bg-warning text-dark">Pendiente</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">Cancelado</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">No hay registros</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
