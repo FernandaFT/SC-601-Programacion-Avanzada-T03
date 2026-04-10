@@ -188,6 +188,7 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="ScriptDB\PracticaS13.sql" />
     <Content Include="Template\css\bootstrap-datepicker.min.css" />
     <Content Include="Template\css\font-awesome.min.css" />
     <Content Include="Template\css\materialdesignicons.min.css" />
