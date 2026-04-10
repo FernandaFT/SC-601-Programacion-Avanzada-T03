@@ -12,21 +12,5 @@ namespace T03.Controllers
         {
             return View();
         }
-
-        #region Consultar
-        [HttpGet]
-        public ActionResult Consultar()
-        {
-            return View();
-        }
-        #endregion
-
-        #region Abonar Registro
-        [HttpGet]
-        public ActionResult Registro()
-        {
-            return View();
-        }
-        #endregion
     }
 }

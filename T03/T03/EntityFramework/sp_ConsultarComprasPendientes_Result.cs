@@ -10,15 +10,11 @@
 namespace T03.EntityFramework
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Abonos
+    public partial class sp_ConsultarComprasPendientes_Result
     {
         public long Id_Compra { get; set; }
-        public long Id_Abono { get; set; }
-        public decimal Monto { get; set; }
-        public System.DateTime Fecha { get; set; }
-    
-        public virtual Principal Principal { get; set; }
+        public string Descripcion { get; set; }
+        public Nullable<decimal> Saldo { get; set; }
     }
 }
