@@ -1,0 +1,87 @@
+﻿@model T03.Models.RegistroModel
+
+@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8 col-lg-6">
+            <div class="d-flex">
+                <a href="@Url.Action("Consultar", "Consulta")" class="btn btn-gradient-danger btn-rounded btn-fw">
+                    <i class="mdi mdi-arrow-left"></i>
+                    Ir a Consulta
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 grid-margin stretch-card">
+            <div class="card bg-gradient-success card-img-holder shadow-lg">
+                <div class="card-body">
+                    <img src="~/Template/image/circle.svg"
+                         class="card-img-absolute"
+                         alt="circle-image" />
+
+                    <h4 class="card-title text-center mb-4 text-white">
+                        Registro de Abono
+                    </h4>
+
+                    @using (Html.BeginForm("Registro", "Registro", FormMethod.Post, new { id = "formAbono" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group mb-3">
+                            <label class="text-white"><strong>Compra</strong></label>
+                            @Html.DropDownListFor(
+                                m => m.IdCompra,
+                                new SelectList(Model.ComprasPendientes, "Value", "Text"),
+                                "Seleccione una compra",
+                                new { @class = "form-control", id = "Id_Compra" }
+                            )
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="text-white"><strong>Saldo Anterior</strong></label>
+                            <input type="text" name="SaldoAnteriorVista" id="SaldoAnteriorVista" class="form-control" readonly />
+                            @Html.HiddenFor(m => m.SaldoAnterior, new { id = "SaldoAnterior" })
+
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="text-white"><strong>Abono</strong></label>
+                            @Html.TextBoxFor(m => m.Abono, new
+                            {
+                                @class = "form-control",
+                                type = "number",
+                                step = "0.01",
+                                min = "0.01",
+                                id = "Abono",
+                                onkeypress = "return soloNumeros(event)"
+                            })
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" name="btnAbonar" id="btnAbonar" class="btn btn-gradient-danger btn-rounded btn-fw">
+                                Abonar
+                            </button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Template/js/funciones/Registro.js"></script>

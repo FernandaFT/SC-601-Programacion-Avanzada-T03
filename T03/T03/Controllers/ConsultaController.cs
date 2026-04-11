@@ -35,13 +35,5 @@ namespace T03.Controllers
             }
         }
         #endregion
-
-        #region Registro
-        [HttpGet]
-        public ActionResult Registro()
-        {
-            return View();
-        }
-        #endregion
     }
 }

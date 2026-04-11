@@ -37,6 +37,14 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="sp_ConsultarCompras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_ConsultarComprasPendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_ConsultarSaldo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vId_Compra" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_PagoParcial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vId_Compra" Type="bigint" Mode="In" />
+          <Parameter Name="vMonto" Type="decimal" Mode="In" />
+        </Function>
         <EntityContainer Name="PracticaS13ModelStoreContainer">
           <EntitySet Name="Abonos" EntityType="Self.Abonos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Principal" EntityType="Self.Principal" Schema="dbo" store:Type="Tables" />
@@ -90,6 +98,14 @@
             <End Role="Abonos" EntitySet="Abonos" />
           </AssociationSet>
           <FunctionImport Name="sp_ConsultarCompras" ReturnType="Collection(PracticaS13Model.sp_ConsultarCompras_Result)" />
+          <FunctionImport Name="sp_ConsultarComprasPendientes" ReturnType="Collection(PracticaS13Model.sp_ConsultarComprasPendientes_Result)" />
+          <FunctionImport Name="sp_ConsultarSaldo" ReturnType="Collection(Decimal)">
+            <Parameter Name="vId_Compra" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PagoParcial">
+            <Parameter Name="vId_Compra" Mode="In" Type="Int64" />
+            <Parameter Name="vMonto" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_ConsultarCompras_Result">
           <Property Type="Int64" Name="Id_Compra" Nullable="false" />
@@ -97,6 +113,11 @@
           <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="5" />
           <Property Type="Decimal" Name="Saldo" Nullable="false" Precision="18" Scale="5" />
           <Property Type="String" Name="Estado" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_ConsultarComprasPendientes_Result">
+          <Property Type="Int64" Name="Id_Compra" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="Decimal" Name="Saldo" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -136,6 +157,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ConsultarComprasPendientes" FunctionName="PracticaS13Model.Store.sp_ConsultarComprasPendientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PracticaS13Model.sp_ConsultarComprasPendientes_Result">
+                <ScalarProperty Name="Id_Compra" ColumnName="Id_Compra" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ConsultarSaldo" FunctionName="PracticaS13Model.Store.sp_ConsultarSaldo" />
+          <FunctionImportMapping FunctionImportName="sp_PagoParcial" FunctionName="PracticaS13Model.Store.sp_PagoParcial" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -153,7 +185,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
